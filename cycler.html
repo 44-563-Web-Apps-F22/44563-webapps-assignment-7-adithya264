@@ -25,41 +25,44 @@
 </head>
 
 <body>
-    <h2>Adithya Varaprasad Muppalla - Builds a cycler</h2>
 
-    <input type="text" id="textID"/>
-    <br/>
-    <br/>
+	<div class="container text-center">
+        <div class="container-fluid p-5 bg-warning text-black text-center">
+            <h1>Adithya Varaprasad builds a cycler</h1>
+        </div><br>
+        <div class="flex-container" id="target">
+            <div class="cycler">row item 1</div>   
+            <div class="cycler">row item 2</div>  
+            <div class="cycler">row item 3</div>  
+        </div><br>
+        <label for="inputElement">Type something: <br></label>
+        <input class="form-control" type="text" name="input" id="inputElement" value="">
+        <br>
+        <p class="message"> 
+            Press the button to create an new element of type div and then add it to the container.
+        </p>
+        <div class="container text-center">
+            <button class="btn btn-warning" type="submit" onclick="makeNewDiv()">Add Value</button>
+            <button class="btn btn-danger" type="submit" onclick="get()">Get</button>
+            <button class="btn btn-success" type="submit" onclick="spin()">Spin</button>
+            <button class="btn btn-success" type="submit" onclick="spin()">swap</button>
+            
+        </div>
+    </div>	
+	<script>
+        function makeNewDiv() {
+            let element = document.createElement("div")
+            let value = document.getElementById("inputElement").value
 
-    <div class="flex-container" id="target">
-        <div class="cycler">row item 1</div>
-        <div class="cycler">row item 2</div>
-        <div class="cycler">row item 3</div>
-    </div>
-    
-    <p> Press the button to create an new element of type div and then add it to the container.
-    </p>
-    <button onclick="makeNewDiv()">Add value</button>
-    <button onclick="get()">Get</button>
-    <button onclick="spin()">Spin</button>
+            element.innerHTML = value
+            element.className = "cycler"
 
-	
-	
-</body>
-<script>
-	function makeNewDiv(){
-		/* make the div and its text */
-		let element = document.createElement("div")
-		element.innerHTML = "an item after 3"
-		element.style.color = "orange"
-
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
-		
-	}
-    
-    function get() {
+            let container = document.getElementById("target")
+            container.appendChild(element)
+        }
+    </script>
+    <script>
+        function get() {
        let cyclerItems  = document.getElementsByClassName('cycler')
        if(cyclerItems.length > 0){
             cyclerItems[cyclerItems.length - 1].remove()
@@ -68,14 +71,14 @@
     }
 
     function spin() {
-        let cyclerItems  = document.getElementsByClassName('cycler')
-       if(cyclerItems.length > 1){
-        let removedText = cyclerItems[cyclerItems.length - 1].innerText
-        let removedItem = cyclerItems[cyclerItems.length - 1].remove()
-        document.createElement('div').innerText = removedText
-        document.getElementById('target').insertBefore( document.createElement('div'), document.getElementById('target').firstChild)
-       }
-       
-    }
+            let cyclerItems = document.getElementsByClassName("cycler")
+            if(cyclerItems.length > 1) {
+                removedItem = cyclerItems[cyclerItems.length-1]
+                cyclerItems[cyclerItems.length-1].remove()
+                let container = document.getElementById("target")
+                container.insertBefore(removedItem, container.firstChild)
+            }
+        }
 </script>
+</body>
 </html>

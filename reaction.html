@@ -18,6 +18,7 @@
   <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
   <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
 
+
   <p id="target"></p>
   <script>
     let myTime = undefined
@@ -46,10 +47,42 @@
 
       }, 3000)
     }
+    function swap() {
+                let cyclerItems = document.getElementsByClassName("cycler")
+                let container = document.getElementById("target")
+                let a = Math.floor(Math.random() * cyclerItems.length)
+                let b = Math.floor(Math.random() * cyclerItems.length)
+                let firstInnerText = document.getElementsByClassName("cycler")[a]
+                let secondInnerText = document.getElementsByClassName("cycler")[b]
+                if(cyclerItems.length > 1) {
+                    let temp = firstInnerText.innerHTML
+                    firstInnerText.innerHTML = secondInnerText.innerHTML
+                    secondInnerText.innerHTML = temp
+                }
+            }
 
     
   </script>
-      
+      <script>
+        function startTime() {
+            // BONUS
+            let countdown = Math.floor(Math.random() * 9) + 2
+            console.log()
+            for (let i = 0; i < countdown; i++) {
+                setTimeout(() => {
+                    document.getElementById("countdown").innerHTML = i
+                }, ((countdown - 1 - i) * 1000));
+            }
+            setTimeout(() => {
+                if (myTime == undefined) {
+                    document.getElementById("target").innerHTML = "Too Slow"
+                } else {
+                    let buttonTime = Date.now()
+                    document.getElementById("target").innerHTML = "Time was " + (buttonTime - myTime)
+                }
+            }, 3000);
+        }
+    </script>
 
 </body>
 </html>
